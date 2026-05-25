@@ -615,6 +615,26 @@ Credits are metered account-wide, but query history lets us attribute usage by d
 
 > **Attribution Summary:** The EV project (EV_POPULATION_DB) directly consumed ~1.21 warehouse credits (EV_OPENFLOW_WH + EV_DEMO_WH). Cortex Code (81 credits) powers this AI assistant. COMPUTE_WH (2.12 credits) handles ad-hoc/system queries.
 
+#### Credit Reconciliation Gap
+
+| Metric | Credits |
+|---|:---:|
+| Initial allocation (trial) | 400.00 |
+| Remaining balance | 209.00 |
+| **Actual consumed** | **191.00** |
+| Tracked in ACCOUNT_USAGE (all time) | ~91.00 |
+| **Unaccounted gap** | **~100.00** |
+
+**Why ~100 credits are not visible in ACCOUNT_USAGE:**
+
+1. **Reporting latency (up to 6 hrs)** — `METERING_HISTORY` has a documented lag of up to 6 hours. Current-day Cortex Code usage (the largest consumer) may not have landed yet. Given daily rates of 38–51 credits, multiple hours of un-landed data easily accounts for 40–50+ credits.
+2. **Cortex Code multi-hour lag** — Cortex Code (Snowsight) credits are aggregated and reported with additional delay beyond standard warehouse metering.
+3. **SPCS standby costs** — Compute pool idle/standby credits may not fully itemize in hourly metering but still deduct from balance.
+4. **Platform overhead on trial accounts** — Some trial accounts incur non-itemized deductions (storage platform fees, internal metadata operations) that reduce balance without appearing as line items.
+5. **First recorded usage is May 22** — If the account was created earlier, any usage before that date may have fallen outside the ACCOUNT_USAGE 365-day retention window or was consumed before metering views were populated.
+
+> **Recommendation:** Re-check this reconciliation in 24 hours when reporting lag clears. The gap should narrow significantly as un-landed Cortex Code credits appear in the views.
+
 ---
 
 ### Monthly Budget Estimate (Demo Workload)
