@@ -545,6 +545,78 @@ silver/dbt_charging_stations/
 
 ## Cost Controls
 
+### Credit Consumption (Last 30 Days — as of May 25, 2026)
+
+**Total Credits Used: ~89.61**
+
+#### By Service Type
+
+| Service Type | Credits | % of Total |
+|---|:---:|:---:|
+| Cortex Code (Snowsight) | 81.01 | 90.4% |
+| Snowpark Container Services | 4.98 | 5.6% |
+| Warehouse Metering | 3.33 | 3.7% |
+| AI Services | 0.27 | 0.3% |
+| Telemetry Data Ingest | 0.01 | <0.1% |
+| Auto-Clustering | 0.01 | <0.1% |
+| Pipe | 0.00 | <0.1% |
+| Copy Files | 0.00 | <0.1% |
+
+#### By Warehouse (3.33 credits total)
+
+| Warehouse | Credits | % of Warehouse Total |
+|---|:---:|:---:|
+| COMPUTE_WH | 2.12 | 63.7% |
+| EV_OPENFLOW_WH | 0.77 | 23.1% |
+| EV_DEMO_WH | 0.44 | 13.2% |
+
+#### Daily Trend
+
+| Date | Credits |
+|---|:---:|
+| May 24, 2026 | 38.11 |
+| May 23, 2026 | 51.50 |
+| May 21–22, 2026 | 0.00 |
+
+> **Key Insight:** Cortex Code (this AI assistant) is the dominant cost driver at 90.4% of total spend. Warehouse compute is minimal at 3.7%. To reduce costs, manage Cortex Code usage or set a budget alert.
+
+#### Workspace / Project Attribution
+
+Credits are metered account-wide, but query history lets us attribute usage by database context:
+
+| Database (Context) | Query Count | Cloud Svc Credits | Purpose |
+|---|:---:|:---:|---|
+| USER$ABHISHEK | 34,250 | 0.0003 | Cortex Code workspace (this assistant) |
+| (no database) | 22,151 | 0.0037 | System/background operations |
+| SNOWFLAKE | 4,810 | 0.0000 | Account usage & metadata queries |
+| **EV_POPULATION_DB** | **645** | **0.0253** | **This project's workload** |
+| SNOWFLAKE_SAMPLE_DATA | 1 | 0.0000 | Sample data exploration |
+
+#### EV Project Warehouse Breakdown (EV_POPULATION_DB)
+
+| Warehouse | Queries | Cloud Svc Credits | Elapsed (hrs) |
+|---|:---:|:---:|:---:|
+| EV_OPENFLOW_WH | 337 | 0.014 | 0.048 |
+| EV_DEMO_WH | 308 | 0.011 | 0.043 |
+
+#### Account-Wide — Full Resource Detail
+
+| Service | Resource | Credits |
+|---|---|:---:|
+| Cortex Code (Snowsight) | CORTEX_CODE_SNOWSIGHT | 81.01 |
+| Snowpark Container Services | SYSTEM_COMPUTE_POOL_CPU | 4.98 |
+| Warehouse | COMPUTE_WH | 2.12 |
+| Warehouse | EV_OPENFLOW_WH | 0.77 |
+| Warehouse | EV_DEMO_WH | 0.44 |
+| AI Services | (unnamed) | 0.27 |
+| Auto-Clustering | AI_OBSERVABILITY_EVENTS | 0.006 |
+| Copy Files | Workspace stage | 0.003 |
+| Pipes | EV_AUTO_INGEST_PIPE + others | ~0.00 |
+
+> **Attribution Summary:** The EV project (EV_POPULATION_DB) directly consumed ~1.21 warehouse credits (EV_OPENFLOW_WH + EV_DEMO_WH). Cortex Code (81 credits) powers this AI assistant. COMPUTE_WH (2.12 credits) handles ad-hoc/system queries.
+
+---
+
 ### Monthly Budget Estimate (Demo Workload)
 
 | Component                    | Credits/Month | Notes                         |
