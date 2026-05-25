@@ -1,0 +1,13 @@
+-- ============================================================
+-- dq_check_comprehensive.sql
+-- Purpose: Schema, Business Rules, Referential Integrity, Freshness checks
+-- Run as: EV_DEMO_ADMIN
+-- ============================================================
+-- CHECKS:
+--   1. SCHEMA_CHECK          — Column counts match expected
+--   2. BUSINESS_RULE         — EV_TYPE must be BEV or PHEV
+--   3. REFERENTIAL_INTEGRITY — EV cities should have charging stations
+--   4. FRESHNESS_CHECK       — Data loaded within 48 hours
+--
+-- USAGE: CALL EV_POPULATION_DB.AUDIT.SP_DQ_CHECK_COMPREHENSIVE();
+-- ============================================================

@@ -1,0 +1,32 @@
+
+  
+    
+
+        create or replace transient table EV_POPULATION_DB.GOLD.dim_charging_stations
+         as
+        (
+
+SELECT
+    STATION_ID,
+    STATION_NAME,
+    CITY,
+    COUNTY,
+    STATE,
+    ZIP_CODE,
+    CONNECTOR_TYPE,
+    POWER_LEVEL_KW,
+    NETWORK,
+    NUM_PORTS,
+    STATION_STATUS,
+    LATITUDE,
+    LONGITUDE,
+    CASE
+        WHEN POWER_LEVEL_KW >= 150 THEN 'DC Fast Charging'
+        WHEN POWER_LEVEL_KW >= 20 THEN 'Level 2 Fast'
+        ELSE 'Level 2 Standard'
+    END AS CHARGING_TIER,
+    MERGED_AT AS LAST_UPDATED_AT
+FROM EV_POPULATION_DB.SILVER.pg_clean_charging_stations
+        );
+      
+  

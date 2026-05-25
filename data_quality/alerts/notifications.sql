@@ -1,0 +1,6 @@
+-- ============================================================
+-- notifications.sql
+-- Purpose: Alert notifications for DQ failures
+-- Run as: EV_DEMO_ADMIN
+-- Status: TODO - implement after DQ rules
+-- ============================================================

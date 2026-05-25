@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: pg_clean_charging_stations
+    description: "Cleaned charging stations — trimmed, standardized, active only. Source: PostgreSQL via CDC."
+    columns:
+      - name: STATION_ID
+        description: "Unique station identifier"
+        tests:
+          - not_null
+          - unique
+
+      - name: STATION_NAME
+        description: "Human-readable station name"
+        tests:
+          - not_null
+
+      - name: CITY
+        description: "City where station is located"
+        tests:
+          - not_null
+
+      - name: STATE
+        description: "2-letter state code"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['WA', 'CA', 'OR', 'KS', 'TX', 'NY', 'FL', 'CO', 'AZ', 'NV', 'IL', 'MA']
+
+      - name: POWER_LEVEL_KW
+        description: "Charging power in kilowatts"
+        tests:
+          - not_null
+
+      - name: ZIP_CODE
+        description: "Postal code — used for joining with EV population data"
+        tests:
+          - not_null

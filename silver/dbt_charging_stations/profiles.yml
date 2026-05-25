@@ -1,0 +1,12 @@
+ev_charging_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: ""
+      user: ""
+      role: EV_DEMO_ADMIN
+      database: EV_POPULATION_DB
+      warehouse: EV_DEMO_WH
+      schema: SILVER
+      threads: 4

@@ -1,0 +1,6 @@
+-- ============================================================
+-- ev_summary_metrics.sql
+-- Purpose: Aggregate EV data into business KPIs
+-- Run as: EV_DEMO_ENGINEER
+-- Status: TODO - implement after Silver layer is ready
+-- ============================================================

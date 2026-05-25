@@ -1,0 +1,6 @@
+-- ============================================================
+-- audit_log_ddl.sql
+-- Purpose: Create audit tables to track pipeline execution
+-- Run as: EV_DEMO_ENGINEER
+-- Status: TODO - implement with pipeline
+-- ============================================================

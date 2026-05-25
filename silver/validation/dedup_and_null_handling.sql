@@ -1,0 +1,6 @@
+-- ============================================================
+-- dedup_and_null_handling.sql
+-- Purpose: Remove duplicates and handle null values
+-- Run as: EV_DEMO_ENGINEER
+-- Status: TODO - implement after cleansing step
+-- ============================================================

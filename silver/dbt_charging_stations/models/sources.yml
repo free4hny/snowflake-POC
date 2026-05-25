@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: pg_bronze
+    database: EV_POPULATION_DB
+    schema: PG_BRONZE
+    tables:
+      - name: PG_CHARGING_STATIONS
+        description: "Current-state charging stations merged from PostgreSQL CDC"
+        columns:
+          - name: STATION_ID
+            description: "Primary key from PostgreSQL source"
+          - name: IS_DELETED
+            description: "Soft-delete flag from CDC merge"

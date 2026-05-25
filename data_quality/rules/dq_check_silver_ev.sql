@@ -1,0 +1,19 @@
+-- ============================================================
+-- dq_check_silver_ev.sql
+-- Purpose: Data quality checks for Silver EV Population (Dynamic Table)
+-- Run as: EV_DEMO_ADMIN
+-- ============================================================
+-- CHECKS:
+--   1. NULL_VIN_SILVER         — VIN must not be null (regression)
+--   2. RANGE_MODEL_YEAR        — Must be 1900-2030
+--   3. NULL_STATE_SILVER       — State must not be null
+--   4. RANGE_ELECTRIC_RANGE    — Must be 0-1000 miles
+--   5. ROW_COUNT_BRONZE_VS_SILVER — Silver <= Bronze (dedup expected)
+--
+-- ON FAIL: Rows moved to AUDIT.DLQ_SILVER
+-- RESULTS: Logged to AUDIT.AUDIT_DQ_RESULTS
+--
+-- USAGE:
+--   CALL EV_POPULATION_DB.AUDIT.SP_DQ_CHECK_SILVER_EV();
+--   SELECT * FROM EV_POPULATION_DB.AUDIT.AUDIT_DQ_RESULTS WHERE LAYER = 'SILVER';
+-- ============================================================

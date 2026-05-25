@@ -1,0 +1,6 @@
+-- ============================================================
+-- dim_ev_models.sql
+-- Purpose: Create dimensional model (facts and dimensions)
+-- Run as: EV_DEMO_ENGINEER
+-- Status: TODO - implement after Silver layer is ready
+-- ============================================================

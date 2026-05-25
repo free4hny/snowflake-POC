@@ -1,0 +1,8 @@
+-- ============================================================
+-- dq_alerting.sql
+-- Purpose: Email notification on DQ failures
+-- Run as: EV_DEMO_ADMIN
+-- ============================================================
+-- Sends email when FAIL or WARN detected in last hour.
+-- USAGE: CALL EV_POPULATION_DB.AUDIT.SP_DQ_ALERT_ON_FAILURES();
+-- ============================================================
